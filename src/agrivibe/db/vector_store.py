@@ -36,10 +36,11 @@ def search_chunks(
     query: str,
     k: int,
     category: Category | None = None
-) -> list[Document]:
+) -> list[tuple[Document, float]]:
+    
     search_filter = {"category": category} if category else None
 
-    return vector_store.similarity_search(
+    return vector_store.similarity_search_with_score(
         query=query,
         k=k,
         filter=search_filter

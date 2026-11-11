@@ -21,3 +21,7 @@ class Settings(BaseSettings):
     pinecone_index: str = "fieldoracle"
     pinecone_cloud: str = "aws"
     pinecone_region: str = "us-east-1"
+
+    chunk_size: int = 1000
+    chunk_overlap: int = 150
+    search_k: int = 4

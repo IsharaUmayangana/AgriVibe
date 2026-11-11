@@ -40,9 +40,12 @@ def make_search_tool(vector_store: VectorStore, k:int):
             The passages as text for the model.
         """
 
-        docs = search_chunks(
-            vector_store=vector_store, query=query, k=k, category=category
-        )
+        docs = [
+            doc 
+                for doc, score in search_chunks(
+                    vector_store=vector_store, query=query, k=k, category=category
+                )
+        ]
 
         return format_passages(docs)
 
