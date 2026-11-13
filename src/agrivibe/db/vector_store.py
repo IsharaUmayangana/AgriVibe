@@ -22,7 +22,7 @@ def create_vector_store(settings: Settings) -> PineconeVectorStore:
             name=settings.pinecone_index,
             dimension=settings.embedding_dimension,
             metric="cosine",
-            serverless=ServerlessSpec(cloud=settings.pinecone_cloud, region=settings.pinecone_region)
+            spec=ServerlessSpec(cloud=settings.pinecone_cloud, region=settings.pinecone_region)
         )
 
     return PineconeVectorStore(

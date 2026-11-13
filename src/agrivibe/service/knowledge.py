@@ -6,7 +6,7 @@ from pathlib import Path
 from langchain_core.vectorstores import VectorStore
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_core.documents import Document
-from pypdf import PDFReader
+from pypdf import PdfReader
 
 from agrivibe.db.vector_store import Category, search_chunks
 from agrivibe.models.knowledge import IndexResponse, SearchResponse, SearchHit
@@ -31,7 +31,7 @@ def make_doc_id(filename: str, data: bytes) -> str:
     return f"{stem}-{digest}"
 
 def read_pdf(data: bytes, metadata: dict) -> list[Document]:
-    pdf = PDFReader(BytesIO(data))
+    pdf = PdfReader(BytesIO(data))
 
     return [
         Document(page_content=page.extract_text(), metadata={**metadata, "page": number})

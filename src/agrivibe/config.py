@@ -15,6 +15,7 @@ class Settings(BaseSettings):
     openai_api_key: SecretStr
     pinecone_api_key: SecretStr
 
+    chat_model: str = "openai:gpt-5.6-luna"
     embeddings_model: str = "text-embedding-3-small"
     embedding_dimension: int = 1536
 
