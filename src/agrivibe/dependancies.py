@@ -1,5 +1,8 @@
 from functools import lru_cache
+
 from langchain_pinecone import PineconeVectorStore
+from langgraph.checkpoint.memory import InMemorySaver
+from langgraph.store.memory import InMemoryStore
 
 from agrivibe.service.knowledge import KnowledgeService
 from agrivibe.service.answering import AnswerService
@@ -36,7 +39,8 @@ def get_answer_service() -> AnswerService:
     rag_agent = build_fieldoracle_agent(
         create_chat_model(settings),
         get_vector_store(),
-        k=settings.search_k
+        k=settings.search_k,
+        checkpointer=InMemorySaver(),
     )
 
     return AnswerService(rag_agent)
