@@ -50,13 +50,13 @@ def search_queries(messages: list[BaseMessage]) -> list[str]:
         The search queries, in the order the agent ran them.
     """
 
-    return(
+    return[
         call["args"]["query"]
         for message in messages
         if isinstance(message, AIMessage)
         for call in message.tool_calls
         if call["name"] == "search_knowledge"
-    )
+    ]
 
 
 
